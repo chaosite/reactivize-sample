@@ -8,7 +8,7 @@ class QuoteGetter(symbol: String) {
     private val stock = YahooFinance.get(symbol)
     private var price = stock.quote.price
 
-    @Reactivize
+    // @Reactivize
     fun printQuote() {
         println(this.price)
     }

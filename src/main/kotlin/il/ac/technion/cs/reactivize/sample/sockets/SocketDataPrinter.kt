@@ -6,7 +6,7 @@ import java.net.Socket
 class SocketDataPrinter {
     val data = Data()
 
-    @Reactivize
+    // @Reactivize
     fun printData() {
         println(data.data)
     }

@@ -51,3 +51,7 @@ tasks.register<JavaExec>("runVerifier") {
     main = "org.apache.bcel.verifier.Verifier"
     workingDir = File("build/classes/kotlin/main")
 }
+
+configure<il.ac.technion.cs.reactivize.gradle.ReactivizeGradlePluginConfiguration> {
+    packagePrefixes = listOf("il.ac.technion.cs.reactivize.sample", "yahoofinance")
+}

@@ -2,17 +2,20 @@ package il.ac.technion.cs.reactivize.sample.finance
 
 import il.ac.technion.cs.reactivize.api.ReactivizeValue
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import yahoofinance.Stock
 import yahoofinance.YahooFinance
 import kotlin.concurrent.thread
 
 class QuoteGetter(symbol: String) {
-    val stock = YahooFinance.get(symbol)
+    val stock: Stock = YahooFinance.get(symbol)
     val priceObservable: BehaviorSubject<Double> = BehaviorSubject.createDefault(0.0)
-    val t = thread(isDaemon = true) {
-        while (true) {
-            println("Thread heart-beat")
-            stock.getQuote(true)
-            Thread.sleep(1000)
+    init {
+        thread(isDaemon = true) {
+            while (true) {
+                println("Thread heart-beat")
+                stock.getQuote(true)
+                Thread.sleep(1000)
+            }
         }
     }
 
