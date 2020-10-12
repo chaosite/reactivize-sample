@@ -8,7 +8,7 @@ import kotlin.concurrent.thread
 
 class QuoteGetter(symbol: String) {
     val stock: Stock = YahooFinance.get(symbol)
-    val priceObservable: BehaviorSubject<Double> = BehaviorSubject.createDefault(0.0)
+    val priceObservable: BehaviorSubject<Double> = BehaviorSubject.createDefault(13.37)
     init {
         thread(isDaemon = true) {
             while (true) {
@@ -25,8 +25,12 @@ class QuoteGetter(symbol: String) {
 
 fun main() {
     val qg = QuoteGetter("GOOG")
+    var counter = 0
     qg.priceObservable.subscribe {
-        println("gq.price: ${qg.price} it: $it") // println(it) is more correct (because the values can change)
+        println("it: $it")
+        counter += 1
     }
+    println("First getPrice call: ${qg.price}")
     Thread.sleep(5000)
+    println("consumer was called $counter times")
 }
