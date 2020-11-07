@@ -13,18 +13,18 @@ fun main() {
     val qgSimple = QuoteGetter("GOOG")
     val qgBoth = QuoteGetter("GOOG")
 
-    registerToQuoteGetterObservable(qgNeedsReactivize)
+    registerToQuoteGetterObservable(qgNeedsReactivize, "react")
     simplePriceAccess(qgSimple)
 
-    registerToQuoteGetterObservable(qgBoth)
+    registerToQuoteGetterObservable(qgBoth, "both")
     simplePriceAccess(qgBoth)
 
     Thread.sleep(5000)
 }
 
-fun registerToQuoteGetterObservable(qg: QuoteGetter) {
+fun registerToQuoteGetterObservable(qg: QuoteGetter, name: String) {
     qg.priceObservable.subscribe {
-        println("reactivized price: $it")
+        println("reactivized ($name) price: $it")
     }
 }
 

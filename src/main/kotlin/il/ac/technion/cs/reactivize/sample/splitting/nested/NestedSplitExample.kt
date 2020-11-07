@@ -8,7 +8,7 @@ class ReactivizedQuoteGetter(symbol: String) {
     init {
         val qg = QuoteGetter(symbol)
         qg.priceObservable.subscribe {
-            println("reactivized price: $it")
+            println("reactivized (react) price: $it")
             counter += 1
         }
     }
@@ -22,7 +22,7 @@ class SimpleQuoteGetter(symbol: String) {
     val qg = QuoteGetter(symbol)
 
     fun print(): String {
-        return "current value is $qg.price"
+        return "current value is ${qg.price}"
     }
 }
 
@@ -32,14 +32,14 @@ class BothQuoteGetter(symbol: String) {
 
     init {
         qg.priceObservable.subscribe {
-            println("reactivized price: $it")
+            println("reactivized (both) price: $it")
             counter += 1
         }
     }
 
 
     fun print(): String {
-        return "current value is $qg.price; counter was called $counter times"
+        return "current value is ${qg.price}; counter was called $counter times"
     }
 }
 

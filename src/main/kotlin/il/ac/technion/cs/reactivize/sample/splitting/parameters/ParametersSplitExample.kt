@@ -10,26 +10,26 @@ fun main() {
     val qgSimple = QuoteGetter("GOOG")
     val qgBoth = QuoteGetter("GOOG")
 
-    makeLifeHard(qgNeedsReactivize, true)
-    makeLifeHard(qgSimple, false)
+    makeLifeHard(qgNeedsReactivize, true, "react")
+    makeLifeHard(qgSimple, false, "")
 
-    makeLifeHard(qgBoth, true)
-    makeLifeHard(qgBoth, false)
+    makeLifeHard(qgBoth, true, "both")
+    makeLifeHard(qgBoth, false, "")
 
     Thread.sleep(5000)
 }
 
-fun makeLifeHard(qg: QuoteGetter, useObservable: Boolean) {
+fun makeLifeHard(qg: QuoteGetter, useObservable: Boolean, name: String) {
     if (useObservable) {
-        registerToQuoteGetterObservable(qg)
+        registerToQuoteGetterObservable(qg, name)
     } else {
         simplePriceAccess(qg)
     }
 }
 
-fun registerToQuoteGetterObservable(qg: QuoteGetter) {
+fun registerToQuoteGetterObservable(qg: QuoteGetter, name: String) {
     qg.priceObservable.subscribe {
-        println("reactivized price: $it")
+        println("reactivized ($name) price: $it")
     }
 }
 

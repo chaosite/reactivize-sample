@@ -28,7 +28,7 @@ class SimpleQuoteGetter(factory: QuoteGetterFactory) {
     val qg = factory.create()
 
     fun print(): String {
-        return "current value is $qg.price"
+        return "current value is ${qg.price}"
     }
 }
 
