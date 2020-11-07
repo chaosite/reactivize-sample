@@ -2,7 +2,7 @@ package il.ac.technion.cs.reactivize.sample.splitting.instance_through_return
 
 import il.ac.technion.cs.reactivize.sample.finance.QuoteGetter
 
-class Returner() {
+class SimpleReturner() {
     fun giveBack(qg: QuoteGetter): QuoteGetter {
         return qg
     }
@@ -17,7 +17,7 @@ class Returner() {
  The Returner class should not be affected
  */
 fun main() {
-    val returner = Returner()
+    val returner = SimpleReturner()
 
     val qgNeedsReactivize = QuoteGetter("GOOG")
     val qgSimple = QuoteGetter("GOOG")
